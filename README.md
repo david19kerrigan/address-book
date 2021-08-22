@@ -14,8 +14,8 @@ node server.js
 ```
 
 ## URL Endpoints
-**Mockup:**
-http://localhost:8080/mockup/
+**Address Book:**
+http://localhost:8080/app/
 
 **People Data:**
 http://localhost:8080/api/people

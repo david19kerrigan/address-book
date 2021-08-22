@@ -12,7 +12,7 @@ AddressBook.prototype.getContact = function (id) {
     if (this.contacts[id]) {
         return this.contacts[id];
     }
-    else{
+    else {
         return false;
     }
 };
@@ -65,7 +65,7 @@ function SortContacts() {
         }
         return 0;
     })
-    // Move the dividers backwards one index
+    // Move the dividers backwards one index when reverse-sorting
     if (order == -1) {
         for (var index = 0; index < addressBook.contacts.length; index++) {
             if (typeof addressBook.getContact(index) == "string") {
@@ -121,16 +121,16 @@ var App = {
             m("div", { class: "app-person-profile-container" },
                 m("div", { class: "app-person-profile docs-highlight docs-blue", dataIntro: "Person Profile", dataPosition: "bottom" }, [
                     m("div", { class: "app-person-profile-header" }, [
-                        m("div", { class: currentKey != null ? "app-person-profile-photo" : null, style: `background-image: url(${addressBook.getContact(currentKey).picture}` }),
+                        currentKey != null ? m("div", { class: "app-person-profile-photo", style: `background-image: url(${addressBook.getContact(currentKey).picture}` }) : null,
                         m("h2", addressBook.getContact(currentKey).name)
                     ]),
                     m("div", { class: "app-section" }, [
                         m("div", { class: "app-section-header" }, [
-                            m("h3", currentKey != null ? "Education" : null),
+                            currentKey != null ? m("h3", "Education") : null,
                             m("div", { class: "app-section-body" },
                                 m("div", { class: "app-history-item" }, [
                                     m("div", { class: "app-history-item-dates" },
-                                        m("div", currentKey != null ? addressBook.getContact(currentKey).schoolStartYear + "-" + addressBook.getContact(currentKey).schoolEndYear : null)
+                                        currentKey != null ? m("div", addressBook.getContact(currentKey).schoolStartYear + "-" + addressBook.getContact(currentKey).schoolEndYear) : null
                                     ),
                                     m("div", { class: "app-history-item-body" }, [
                                         m("div", { class: "app-history-item-title" }, addressBook.getContact(currentKey).schoolInstitution),
@@ -142,11 +142,11 @@ var App = {
                     ]),
                     m("div", { class: "app-section" }, [
                         m("div", { class: "app-section-header" }, [
-                            m("h3", currentKey != null ? "Work History" : null),
+                            currentKey != null ? m("h3", "Work History") : null,
                             m("div", { class: "app-section-body" },
                                 m("div", { class: "app-history-item" }, [
                                     m("div", { class: "app-history-item-dates" },
-                                        m("div", currentKey != null ? addressBook.getContact(currentKey).workStartYear + "-Present" : null)
+                                    currentKey != null ?  m("div", addressBook.getContact(currentKey).workStartYear + "-Present") : null
                                     ),
                                     m("div", { class: "app-history-item-body" }, [
                                         m("div", { class: "app-history-item-title" }, addressBook.getContact(currentKey).workInstitution),
